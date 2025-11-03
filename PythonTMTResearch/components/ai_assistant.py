@@ -5,13 +5,14 @@ Provides AI-powered insights and answers throughout the application
 import streamlit as st
 from google import genai
 from google.genai import types
-import os
 from typing import Optional, List, Dict
 from data.tmt_data import get_all_companies, get_news_feed, get_earnings_calendar
 
 # Initialize Gemini client
-client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
-
+# Uses API key from Streamlit secrets (see .streamlit/secrets.toml)
+client = genai.Client(
+    api_key=st.secrets["GEMINI_API_KEY"]
+)
 
 def get_context_data() -> str:
     """Get current application context for AI assistant"""
@@ -57,34 +58,30 @@ When users ask about volatility or price movements, explain that the portal trac
     except:
         return "You are an AI assistant for a TMT Research Portal. Help users with company information, news, earnings data, and stock volatility."
 
-
-def chat_with_gemini(user_message: str, chat_history: List[Dict]) -> str:
-    """
-    Send message to Gemini and get response
-    
-    Args:
-        user_message: User's question or message
-        chat_history: Previous chat messages
-    
-    Returns:
-        AI response text
-    """
+def chat_with_gemini(user_message: str, conversation_history: Optional[List[Dict]] = None) -> str:
+    """Chat with Gemini AI using conversation history"""
     try:
-        # Build conversation history
+        context = get_context_data()
+        
+        # Build conversation for Gemini
         contents = []
         
-        # Add context as system instruction
-        system_prompt = get_context_data()
+        # Add system context first
+        contents.append(types.Content(
+            role="user",
+            parts=[types.Part(text=context)]
+        ))
         
-        # Add chat history
-        for msg in chat_history[-10:]:  # Last 10 messages for context
-            role = "user" if msg["role"] == "user" else "model"
-            contents.append(types.Content(
-                role=role,
-                parts=[types.Part(text=msg["content"])]
-            ))
+        # Add conversation history
+        if conversation_history:
+            for msg in conversation_history[-5:]:  # Last 5 messages for context
+                role = "user" if msg["role"] == "user" else "model"
+                contents.append(types.Content(
+                    role=role,
+                    parts=[types.Part(text=msg["content"])]
+                ))
         
-        # Add current user message
+        # Add current message
         contents.append(types.Content(
             role="user",
             parts=[types.Part(text=user_message)]
@@ -92,92 +89,78 @@ def chat_with_gemini(user_message: str, chat_history: List[Dict]) -> str:
         
         # Generate response
         response = client.models.generate_content(
-            model="gemini-2.5-flash",
+            model="gemini-2.0-flash-exp",
             contents=contents,
             config=types.GenerateContentConfig(
-                system_instruction=system_prompt,
                 temperature=0.7,
-            ),
+                max_output_tokens=1000
+            )
         )
         
-        return response.text or "I'm sorry, I couldn't generate a response."
-        
+        return response.text
     except Exception as e:
-        return f"Error: {str(e)}"
+        return f"I apologize, but I encountered an error: {str(e)}. Please try again."
 
-
-def summarize_content(content: str, content_type: str = "text") -> str:
-    """
-    Summarize content using Gemini
-    
-    Args:
-        content: Content to summarize
-        content_type: Type of content (text, news, earnings)
-    
-    Returns:
-        Summary text
-    """
+def summarize_content(content: str, max_length: int = 200) -> str:
+    """Generate a summary of given content"""
     try:
-        prompts = {
-            "news": f"Summarize this news article in 2-3 sentences, highlighting key points:\n\n{content}",
-            "earnings": f"Summarize these earnings results, focusing on key metrics and performance:\n\n{content}",
-            "text": f"Provide a concise summary:\n\n{content}"
-        }
-        
-        prompt = prompts.get(content_type, prompts["text"])
-        
+        prompt = f"Summarize the following content in {max_length} characters or less:\n\n{content}"
         response = client.models.generate_content(
-            model="gemini-2.5-flash",
-            contents=prompt
+            model="gemini-2.0-flash-exp",
+            contents=[types.Content(
+                role="user",
+                parts=[types.Part(text=prompt)]
+            )],
+            config=types.GenerateContentConfig(
+                temperature=0.5,
+                max_output_tokens=100
+            )
         )
-        
-        return response.text or "Unable to generate summary."
-        
-    except Exception as e:
-        return f"Error summarizing: {str(e)}"
-
+        return response.text
+    except:
+        # Fallback to simple truncation
+        return content[:max_length] + "..." if len(content) > max_length else content
 
 def render_sidebar_assistant():
-    """Render AI assistant in sidebar"""
-    st.sidebar.markdown("---")
-    st.sidebar.markdown("### 🤖 AI Assistant")
-    
-    # Initialize chat history in session state
-    if "chat_history" not in st.session_state:
-        st.session_state.chat_history = []
-    
-    # Chat interface
-    with st.sidebar.expander("💬 Chat with AI", expanded=False):
+    """Render AI Assistant in sidebar"""
+    with st.sidebar:
+        st.markdown("### 🤖 AI Assistant")
+        st.markdown("Ask me anything about the TMT sector!")
+        
+        # Initialize chat history
+        if 'chat_history' not in st.session_state:
+            st.session_state.chat_history = []
+        
         # Display chat history
-        chat_container = st.container()
-        with chat_container:
-            for msg in st.session_state.chat_history[-5:]:  # Show last 5 messages
-                if msg["role"] == "user":
-                    st.markdown(f"**You:** {msg['content']}")
-                else:
-                    st.markdown(f"**AI:** {msg['content']}")
-                st.markdown("---")
+        for i, message in enumerate(st.session_state.chat_history):
+            role = message["role"]
+            content = message["content"]
+            
+            if role == "user":
+                st.markdown(f"**You:** {content}")
+            else:
+                st.markdown(f"**AI:** {content}")
         
         # Input area
-        user_input = st.text_input(
-            "Ask me anything about TMT companies, news, or earnings:",
-            key="ai_assistant_input",
-            placeholder="e.g., Tell me about Apple's recent news"
-        )
+        col1, col2 = st.columns([3, 1])
         
-        col1, col2 = st.columns([1, 1])
         with col1:
-            if st.button("Send", use_container_width=True, key="ai_send"):
-                if user_input.strip():
-                    # Add user message to history
-                    st.session_state.chat_history.append({
-                        "role": "user",
-                        "content": user_input
-                    })
-                    
-                    # Get AI response
-                    with st.spinner("Thinking..."):
-                        response = chat_with_gemini(user_input, st.session_state.chat_history)
+            user_input = st.text_input(
+                "Ask a question...",
+                key="ai_input",
+                label_visibility="collapsed"
+            )
+            
+            if user_input:
+                # Add user message to history
+                st.session_state.chat_history.append({
+                    "role": "user",
+                    "content": user_input
+                })
+                
+                # Get AI response
+                with st.spinner("Thinking..."):
+                    response = chat_with_gemini(user_input, st.session_state.chat_history)
                     
                     # Add AI response to history
                     st.session_state.chat_history.append({
@@ -230,7 +213,6 @@ def render_sidebar_assistant():
                 response = chat_with_gemini(question, st.session_state.chat_history)
             st.session_state.chat_history.append({"role": "assistant", "content": response})
             st.rerun()
-
 
 # Export functions for use in other views
 __all__ = ['render_sidebar_assistant', 'summarize_content', 'chat_with_gemini']
