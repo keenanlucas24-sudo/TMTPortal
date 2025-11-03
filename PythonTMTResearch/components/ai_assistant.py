@@ -6,15 +6,33 @@ import streamlit as st
 from google import genai
 from google.genai import types
 import os
+from utils.secret_helper import get_secret
 from typing import Optional, List, Dict
 from data.tmt_data import get_all_companies, get_news_feed, get_earnings_calendar
 
-# Initialize Gemini client
-client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
+# Initialize Gemini client only when an API key is present. If missing, keep `client` as None
+_gemini_api_key = get_secret("GEMINI_API_KEY")
+if _gemini_api_key:
+    try:
+        client = genai.Client(api_key=_gemini_api_key)
+    except Exception as e:
+        # If initialization fails, set client to None and allow the app to continue running.
+        client = None
+        try:
+            # streamlit may not be initialized at import time; guard usage
+            st.warning(f"Gemini client initialization failed: {e}")
+        except Exception:
+            pass
+else:
+    client = None
 
 
 def get_context_data() -> str:
     """Get current application context for AI assistant"""
+    # Ensure Gemini client is available
+    if client is None:
+        return "Gemini AI is not configured. Please set the GEMINI_API_KEY environment variable to enable the assistant."
+
     try:
         companies = get_all_companies()
         news = get_news_feed()[:10]  # Recent 10 news items
@@ -69,6 +87,10 @@ def chat_with_gemini(user_message: str, chat_history: List[Dict]) -> str:
     Returns:
         AI response text
     """
+    # Ensure Gemini client is available
+    if client is None:
+        return "Gemini AI is not configured. Please set the GEMINI_API_KEY environment variable to enable summaries."
+
     try:
         # Build conversation history
         contents = []

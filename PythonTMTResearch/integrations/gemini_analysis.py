@@ -4,6 +4,7 @@ Extracts tickers, sentiment, and relevance for TMT financial news
 """
 import json
 import os
+from utils.secret_helper import get_secret
 from typing import Dict, List, Optional
 from google import genai
 from google.genai import types
@@ -13,7 +14,8 @@ from pydantic import BaseModel
 # Using blueprint:python_gemini integration
 # The SDK was recently renamed from google-generativeai to google-genai
 
-client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
+_gemini_api_key = get_secret("GEMINI_API_KEY")
+client = genai.Client(api_key=_gemini_api_key) if _gemini_api_key else None
 
 
 class TweetAnalysis(BaseModel):

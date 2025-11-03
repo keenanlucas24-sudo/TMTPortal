@@ -31,14 +31,15 @@ class EarningsAPIIntegration:
         """
         self.provider = provider
         
+        from utils.secret_helper import get_secret
         if provider == "alpha_vantage":
-            self.api_key = os.getenv("ALPHA_VANTAGE_KEY")
+            self.api_key = get_secret("ALPHA_VANTAGE_KEY")
             self.base_url = "https://www.alphavantage.co/query"
         elif provider == "fmp":
-            self.api_key = os.getenv("FMP_API_KEY")
+            self.api_key = get_secret("FMP_API_KEY")
             self.base_url = "https://financialmodelingprep.com/api/v3"
         elif provider == "finnhub":
-            self.api_key = os.getenv("FINNHUB_API_KEY")
+            self.api_key = get_secret("FINNHUB_API_KEY")
             self.base_url = "https://finnhub.io/api/v1"
         else:
             raise ValueError(f"Unsupported provider: {provider}. Choose 'alpha_vantage', 'fmp', or 'finnhub'.")

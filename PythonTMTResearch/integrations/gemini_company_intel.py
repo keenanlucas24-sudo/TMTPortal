@@ -5,11 +5,13 @@ Fetches real-time, comprehensive company data using Gemini API
 import os
 from google import genai
 from google.genai import types
+from utils.secret_helper import get_secret
 from typing import Dict, Optional, List
 from datetime import datetime
 
 
-client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
+_gemini_api_key = get_secret("GEMINI_API_KEY")
+client = genai.Client(api_key=_gemini_api_key) if _gemini_api_key else None
 
 
 def get_comprehensive_company_data(ticker: str, company_name: str) -> Dict:

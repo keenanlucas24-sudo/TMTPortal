@@ -20,7 +20,12 @@ def get_stock_quote_alphavantage(ticker: str) -> Optional[Dict]:
     Returns:
         Dict with price, change, change_percent, or None if error
     """
-    api_key = os.environ.get("ALPHA_VANTAGE_KEY")
+    try:
+        # Prefer streamlit secrets when available
+        from utils.secret_helper import get_secret
+        api_key = get_secret("ALPHA_VANTAGE_KEY")
+    except Exception:
+        api_key = os.environ.get("ALPHA_VANTAGE_KEY")
     if not api_key:
         return None
     

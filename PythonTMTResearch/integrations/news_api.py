@@ -32,17 +32,18 @@ class NewsAPIIntegration:
         """
         self.provider = provider
         
+        from utils.secret_helper import get_secret
         if provider == "alpha_vantage":
-            self.api_key = os.getenv("ALPHA_VANTAGE_KEY")
+            self.api_key = get_secret("ALPHA_VANTAGE_KEY")
             self.base_url = "https://www.alphavantage.co/query"
         elif provider == "marketaux":
-            self.api_key = os.getenv("MARKETAUX_KEY")
+            self.api_key = get_secret("MARKETAUX_KEY")
             self.base_url = "https://api.marketaux.com/v1/news/all"
         elif provider == "stock_news":
-            self.api_key = os.getenv("STOCK_NEWS_KEY")
+            self.api_key = get_secret("STOCK_NEWS_KEY")
             self.base_url = "https://stocknewsapi.com/api/v1"
         elif provider == "finnhub":
-            self.api_key = os.getenv("FINNHUB_API_KEY")
+            self.api_key = get_secret("FINNHUB_API_KEY")
             self.base_url = "https://finnhub.io/api/v1"
         else:
             raise ValueError(f"Unsupported provider: {provider}. Choose 'alpha_vantage', 'marketaux', 'stock_news', or 'finnhub'.")
