@@ -5,6 +5,7 @@ Extracts tickers, sentiment, and relevance for TMT financial news
 import json
 import os
 from typing import Dict, List, Optional
+
 from google import genai
 from google.genai import types
 from pydantic import BaseModel
@@ -13,7 +14,17 @@ from pydantic import BaseModel
 # Using blueprint:python_gemini integration
 # The SDK was recently renamed from google-generativeai to google-genai
 
-client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
+# Try to import streamlit for secrets management
+# Falls back to environment variables if streamlit is not available
+try:
+    import streamlit as st
+    # Use st.secrets if available, otherwise fall back to environment variable
+    API_KEY = st.secrets.get("GEMINI_API_KEY", os.environ.get("GEMINI_API_KEY"))
+except (ImportError, FileNotFoundError):
+    # Streamlit not available or secrets.toml not found, use environment variable
+    API_KEY = os.environ.get("GEMINI_API_KEY")
+
+client = genai.Client(api_key=API_KEY)
 
 
 class TweetAnalysis(BaseModel):
@@ -40,7 +51,6 @@ def analyze_tweet(tweet_text: str, author: str) -> Optional[Dict]:
     """
     try:
         system_prompt = """You are a financial news analyst specializing in Technology, Media, and Telecom (TMT) sectors.
-
 Analyze the given tweet and extract:
 1. Related tickers/companies (list of stock tickers like ["AAPL", "MSFT"])
 2. Sentiment (positive/negative/neutral)
