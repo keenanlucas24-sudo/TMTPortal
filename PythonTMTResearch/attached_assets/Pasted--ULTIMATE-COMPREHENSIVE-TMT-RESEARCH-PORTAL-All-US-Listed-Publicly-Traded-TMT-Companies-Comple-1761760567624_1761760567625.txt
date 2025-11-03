@@ -1,0 +1,920 @@
+# ULTIMATE COMPREHENSIVE TMT RESEARCH PORTAL
+## All US-Listed Publicly Traded TMT Companies - Complete Universe
+
+Copy and paste this entire prompt into your Replit AI chat:
+
+---
+
+Create the most comprehensive TMT Research Portal Streamlit app covering ALL publicly-traded US-listed Technology, Media, and Telecom companies with market cap >$5 billion (or include all US-listed TMT stocks).
+
+## 1. DATABASE STRUCTURE (SQLite)
+
+**companies table:**
+- id (primary key)
+- ticker (unique)
+- name
+- sector (primary)
+- sub_sector
+- description
+- market_cap_billions
+- country_headquarters
+- founded_year
+- exchange (NASDAQ, NYSE, etc.)
+
+**earnings table:**
+- id, ticker, company_name, earnings_date, estimate_eps, actual_eps, surprise_percent
+
+**news table:**
+- id, ticker, headline, source, url, published_date, sentiment, category, summary
+
+---
+
+## 2. COMPLETE COMPANY DATABASE - 250+ COMPANIES
+
+### SEMICONDUCTORS & CHIP DESIGN (60+ companies)
+
+**GPU & AI Chips:**
+- NVDA | NVIDIA | $3.2T | GPU, AI, CUDA
+- AMD | Advanced Micro Devices | $220B | Ryzen, EPYC, Radeon
+- ALAB | Astera Labs | $35B | AI connectivity
+
+**CPUs & Server Chips:**
+- INTC | Intel | $260B | Xeon, Core, Foundry
+- QCOM | Qualcomm | $210B | Snapdragon, Oryon
+- ARM | Arm Holdings | $60B | CPU architecture licensing
+- SSNLF | SoftBank Group | $120B | Semiconductor investments
+
+**Fabless (Design Only):**
+- MRVL | Marvell Technology | $65B | Data center, storage
+- AVGO | Broadcom | $280B | Infrastructure, RF, wireless
+- LSCC | Lattice Semiconductor | $15B | FPGA, mobile
+- NXPI | NXP Semiconductors | $55B | Automotive, RF, IoT
+- RMBS | Rambus Inc | $12B | Memory interface, security
+- PSTG | Pure Storage | $30B | Storage systems
+- XLNX | Xilinx | $60B | FPGA
+- SMTC | Semtech | $10B | Analog, infrastructure
+
+**Analog & Power Management:**
+- TXN | Texas Instruments | $180B | Analog ICs
+- ADI | Analog Devices | $85B | Mixed-signal, sensors
+- MXIM | Maxim Integrated | $50B | Analog chips
+- NXP | NXP Semiconductors | $55B | Analog, RF, automotive
+- ON | ON Semiconductor | $35B | Power management
+- SLAB | Silicon Labs | $12B | MCU, wireless
+- NSTG | Nanostring | $8B (include if available)
+- GRMN | Garmin | $35B | GPS, wireless chips
+- PAYT | Paylocity | N/A (not semiconductor)
+- SEIA | Semiconductor Insights | N/A (research, not public)
+
+**Automotive Semiconductors:**
+- NXP | NXP Semiconductors | $55B | Automotive SoCs
+- TXN | Texas Instruments | $180B | Automotive analog
+- ADI | Analog Devices | $85B | Automotive sensors
+- ON | ON Semiconductor | $35B | Automotive power
+- STM | STMicroelectronics | $50B | Automotive ICs
+- QCOM | Qualcomm | $210B | Automotive connectivity
+- INTC | Intel | $260B | Automotive processors
+
+**Memory & Storage Semiconductors:**
+- MU | Micron Technology | $80B | DRAM, NAND, SSDs
+- WDC | Western Digital | $15B | Storage, HDD, SSD
+- SKYW | SkyWorks Solutions | $20B | Mixed-signal
+- KOSS | Koss Corporation | $0.1B (too small, skip)
+
+**FPGA & Programmable:**
+- XLNX | Xilinx | $60B | FPGA, adaptive computing
+- LSCC | Lattice Semiconductor | $15B | FPGA, low-power
+- ACIW | AC Investment | N/A (not semiconductor)
+
+**RF & Wireless Semiconductors:**
+- QCOM | Qualcomm | $210B | RF, modem, power
+- AVGO | Broadcom | $280B | RF, wireless, power
+- SKYW | SkyWorks Solutions | $20B | RF amplifiers
+- PSTG | Prologis | N/A (not semiconductor)
+
+**Semiconductor Equipment & Materials (25+ companies):**
+- ASML | ASML Holding | $310B | Lithography (EUV)
+- KLAC | KLA Corp | $65B | Inspection equipment
+- LRCX | Lam Research | $80B | Deposition, etch equipment
+- AMAT | Applied Materials | $210B | Deposition equipment
+- COHR | Coherent | $20B | Laser, imaging equipment
+- SNPS | Synopsys | $90B | EDA, chip design tools
+- CDNS | Cadence Design | $80B | EDA, simulation tools
+- MTSI | Macom Tech | $12B | RF/Microwave semiconductors
+- PRAD | Praesidium | N/A (private)
+- RXDX | Radiation Oncology | N/A (wrong industry)
+
+**Semiconductor Services & IP:**
+- SNPS | Synopsys | $90B | EDA, IP licensing
+- CDNS | Cadence Design | $80B | EDA, design tools
+- ANSYS | ANSYS | $50B | Simulation software
+- PLTR | Palantir Technologies | $80B | Data analytics
+
+**Specialty Semiconductors:**
+- SMTC | Semtech | $10B | Analog infrastructure
+- MTSI | MACOM | $12B | RF/Microwave chips
+- GRMN | Garmin | $35B | GPS, wireless
+- BLKB | BlackBaud | $15B | Cloud enterprise (not pure semiconductor)
+
+**Semiconductor Foundries:**
+- TSM | TSMC | $800B | Foundry, advanced nodes
+- INTC | Intel | $260B | Foundry services
+
+**Chip Related Services:**
+- NVDA | NVIDIA | $3.2T | Custom silicon design
+- AVGO | Broadcom | $280B | Custom silicon
+- MSFT | Microsoft | $3.5T | Custom AI chips
+
+---
+
+### INFRASTRUCTURE & NETWORKING EQUIPMENT (50+ companies)
+
+**Network Infrastructure & Routers:**
+- CSCO | Cisco Systems | $300B | Routers, switches, firewalls
+- JNPR | Juniper Networks | $20B | Routing, switching
+- COMMU | Commscope | $8B (under $5B threshold)
+- FIVN | F5 Networks | $15B | Application delivery
+- AKAM | Akamai Technologies | $20B | CDN, cloud security
+- AVGO | Broadcom | $280B | Networking chips
+- QCOM | Qualcomm | $210B | Networking chips
+
+**Data Center Infrastructure:**
+- VRT | Vertiv Holdings | $15B | Power, cooling, infrastructure
+- PLD | Prologis | $160B | Data center REIT
+- EQIX | Equinix | $120B | Data center operations
+- DLR | Digital Realty | $50B | Data center REIT
+- CCI | Crown Castle | $70B | Tower infrastructure REIT
+- QTS | QTS Realty Trust | $12B | Data center REIT
+- CONE | CyrusOne | $12B | Data center operations
+- SWCH | Switch & Data | $15B | Data center, infrastructure
+- UNIT | Uniti Group | $3B (under threshold)
+
+**Enterprise Storage & Backup:**
+- NTAP | NetApp | $35B | Storage, data management
+- PSTG | Pure Storage | $30B | All-flash storage
+- HPE | Hewlett Packard Enterprise | $45B | Enterprise storage
+- DELL | Dell Technologies | $50B | Storage arrays
+- ADDN | Addentum | N/A (private)
+
+**Server & Computing Hardware:**
+- SMCI | Super Micro Computer | $60B | Servers, AI infrastructure
+- DELL | Dell Technologies | $50B | Enterprise servers
+- HPE | Hewlett Packard Enterprise | $45B | Enterprise servers
+- HPQ | HP Inc | $25B | PCs, workstations
+- CRSR | Corsair | $15B | Gaming PCs, components
+- PCTY | Perforce | N/A (private)
+- AAPL | Apple | $3.5T | Custom silicon Macs
+
+**Network Switches & Fabric:**
+- CSCO | Cisco | $300B | Switches, fabric
+- JNPR | Juniper | $20B | Switches, fabric
+- AVGO | Broadcom | $280B | Switch fabric chips
+- ARISTA | Arista Networks | $80B | Data center switches
+- MLNX | Mellanox (NVIDIA subsidiary) | merged
+
+---
+
+### CLOUD & INFRASTRUCTURE (40+ companies)
+
+**Hyperscale Cloud Platforms:**
+- MSFT | Microsoft | $3.5T | Azure, 365, Teams
+- AMZN | Amazon | $2.0T | AWS, EC2
+- GOOG | Alphabet/Google | $2.2T | Google Cloud, Workspace
+- ORCL | Oracle | $380B | Oracle Cloud, database
+- IBM | IBM | $230B | IBM Cloud, enterprise
+
+**Cloud Application Platforms:**
+- CRM | Salesforce | $360B | Salesforce Cloud, Einstein
+- NOW | ServiceNow | $80B | Workflow, IT service management
+- SNOW | Snowflake | $80B | Data warehouse
+- DBX | Dropbox | $12B | Cloud storage, collaboration
+- BOX | Box | $10B | Content management
+- DOMO | Domo | $10B | Business analytics
+- ADBE | Adobe | $270B | Creative Cloud, document management
+- INTU | Intuit | $200B | Cloud accounting
+- VEEV | Veeva Systems | $30B | Life sciences cloud
+
+**Data & Analytics Cloud:**
+- MSTR | MicroStrategy | $35B | Business intelligence, AI
+- SPLK | Splunk | $40B | Data analytics, security operations
+- DDOG | Datadog | $50B | Cloud monitoring, infrastructure
+- DYAX | Dyax | N/A (acquired)
+- SUMO | Sumo Logic | $18B | Cloud SIEM, monitoring
+- ALKT | Alteryx | $5B (at threshold)
+- TBLK | Tableau (Salesforce) | merged
+- QLIK | Qlik (private equity)
+- SISENSE | Sisense | N/A (private)
+
+**Database & Data Platforms:**
+- ORCL | Oracle | $380B | Database cloud
+- IBM | IBM | $230B | Database services
+- SNOW | Snowflake | $80B | Cloud data warehouse
+- MSFT | Microsoft | $3.5T | Azure database services
+- AMZN | Amazon | $2.0T | AWS RDS, DynamoDB
+- GOOG | Alphabet | $2.2T | BigQuery, Firestore
+- MSTR | MicroStrategy | $35B | Data warehouse
+- ESRI | ESRI | $5B (private - skip)
+
+**Cloud Security:**
+- CRWD | CrowdStrike | $50B | Cloud endpoint security
+- PALO | Palo Alto Networks | $70B | Cloud security platform
+- ZS | Zscaler | $35B | Zero-trust cloud security
+- NET | Cloudflare | $35B | DDoS protection, WAF
+- OKTA | Okta | $20B | Identity, access management
+
+**DevOps & Monitoring:**
+- DDOG | Datadog | $50B | Infrastructure monitoring
+- NEW | Relic (NewRelic) | $5B (threshold)
+- DYAX | Dynatrace | $10B | Application monitoring
+- SUMO | Sumo Logic | $18B | Cloud SIEM, logging
+- SPLK | Splunk | $40B | Data analytics, observability
+
+---
+
+### ENTERPRISE SOFTWARE & SERVICES (60+ companies)
+
+**ERP & Finance:**
+- WDAY | Workday | $70B | Cloud HCM, finance, planning
+- ORCL | Oracle | $380B | ERP, database
+- SAP | SAP SE | $180B | Enterprise resource planning
+- INTU | Intuit | $200B | Financial software
+- ADP | ADP | $95B | Payroll, HCM services
+- PAYX | Paychex | $45B | Payroll, HR services
+- GOOG | Alphabet | $2.2T | Google Workspace
+- MSFT | Microsoft | $3.5T | Microsoft 365, enterprise
+
+**CRM & Sales:**
+- CRM | Salesforce | $360B | CRM, Einstein AI
+- HUBS | HubSpot | $50B | CRM, marketing automation
+- VEEV | Veeva Systems | $30B | Life sciences CRM
+- MKTX | MarketAxess | $20B | Financial trading platform
+
+**HR & Talent:**
+- WDAY | Workday | $70B | Cloud HCM
+- ADP | ADP | $95B | Payroll, HCM
+- PAYX | Paychex | $45B | Payroll services
+- ICPT | Intercept Pharmaceuticals | N/A (wrong industry)
+
+**Project & Work Management:**
+- TEAM | Atlassian | $60B | Jira, Confluence, DevOps
+- MNDY | Monday.com | $10B | Work OS, project management
+- ASANA | Asana | $10B | Work management platform
+- MSFT | Microsoft | $3.5T | Microsoft Project
+- CRM | Salesforce | $360B | Salesforce Platform
+
+**Document & Content Management:**
+- ADBE | Adobe | $270B | Creative Cloud, document management
+- DOCU | DocuSign | $13B | E-signature, contract management
+- BOX | Box | $10B | Content management
+- AVST | Avast | $10B | Cloud services
+
+**Business Intelligence & Analytics:**
+- MSTR | MicroStrategy | $35B | Business intelligence
+- TABLEAU | Tableau (Salesforce) | merged
+- SPLK | Splunk | $40B | Analytics, security operations
+- DDOG | Datadog | $50B | Observability, monitoring
+- ALKT | Alteryx | $5B | Data analytics
+- QLIK | Qlik (private)
+
+**Communications & Collaboration:**
+- MSFT | Microsoft | $3.5T | Teams, Skype, 365
+- ZOOM | Zoom Video Communications | $30B | Video conferencing
+- TWLO | Twilio | $15B | Communications APIs
+- OKTA | Okta | $20B | Identity, communications
+- GOOG | Alphabet | $2.2T | Google Meet, Workspace
+
+**Legal & Compliance:**
+- VEEV | Veeva Systems | $30B | Compliance, quality management
+- DISCO | Disco | $15B | Legal discovery software
+- RAMP | Ramp | $10B | Finance automation, compliance
+- APPF | AppFolio | $3B (under threshold)
+
+**Accounting & Finance Automation:**
+- RAMP | Ramp | $10B | Finance automation
+- BILL | Bill.com | $10B | Financial operations platform
+- PAYP | PayPal | $60B | Financial payments platform
+
+**Human Resources & Talent Management:**
+- WDAY | Workday | $70B | Cloud HCM
+- ADP | ADP | $95B | Payroll, HCM, benefits
+- PAYX | Paychex | $45B | Payroll, HR
+- VEEV | Veeva Systems | $30B | Talent management (life sciences)
+- OKTA | Okta | $20B | Identity management
+
+**Legal & Compliance Software:**
+- VEEV | Veeva Systems | $30B | Quality, compliance
+- DISCO | Disco | $15B | Legal tech, discovery
+- MYOB | MYOB (Australian)
+
+**Supply Chain & Operations:**
+- JDA | Blue Yonder (formerly JDA) | $15B | Supply chain
+- ADBE | Adobe | $270B | Operations in cloud
+- INTU | Intuit | $200B | Small business operations
+
+---
+
+### CYBERSECURITY (40+ companies)
+
+**Endpoint Security:**
+- CRWD | CrowdStrike | $50B | Cloud endpoint, EDR
+- PALO | Palo Alto Networks | $70B | Unified security
+- CHKP | Check Point | $15B | Firewall, endpoint
+- FTNT | Fortinet | $20B | Firewalls, EDR
+- AVST | Avast | $10B | Antivirus, security
+
+**Cloud & Network Security:**
+- PALO | Palo Alto Networks | $70B | Cloud security
+- ZS | Zscaler | $35B | Zero-trust security
+- NET | Cloudflare | $35B | DDoS, WAF, security
+- OKTA | Okta | $20B | Identity, access management
+- IDXG | Idexcel | N/A (private)
+
+**Identity & Access:**
+- OKTA | Okta | $20B | Identity management
+- CRM | Salesforce | $360B | Identity services
+- MSFT | Microsoft | $3.5T | Azure AD
+- PING | Ping Identity | $5B | Identity access
+
+**Threat & Vulnerability Management:**
+- TENB | Tenable | $13B | Vulnerability management
+- QUAL | Qualys | $10B | Vulnerability scanning
+- SPLK | Splunk | $40B | Security analytics
+
+**Security Operations & Analytics:**
+- SPLK | Splunk | $40B | SIEM, security analytics
+- SUMO | Sumo Logic | $18B | Cloud SIEM
+- DDOG | Datadog | $50B | Security monitoring
+- CRWD | CrowdStrike | $50B | Security operations
+- PALO | Palo Alto Networks | $70B | Security operations
+
+**API & Data Security:**
+- NET | Cloudflare | $35B | API security
+- ZS | Zscaler | $35B | Data security
+- PALO | Palo Alto Networks | $70B | Data security
+
+**Email & Data Loss Prevention:**
+- PALO | Palo Alto Networks | $70B | Email security
+- FTNT | Fortinet | $20B | Email security
+- CHKP | Check Point | $15B | Email security
+
+**Threat Intelligence:**
+- PALO | Palo Alto Networks | $70B | Threat intelligence
+- CRWD | CrowdStrike | $50B | Threat intelligence
+- REKTN | Recorded Future | $5B | Threat intelligence
+
+**Network Security:**
+- CSCO | Cisco | $300B | Network security
+- JNPR | Juniper | $20B | Network security
+- CHKP | Check Point | $15B | Network security
+- FTNT | Fortinet | $20B | Firewalls
+- FIVN | F5 Networks | $15B | DDoS protection
+
+---
+
+### DEVELOPMENT TOOLS & DEVOPS (35+ companies)
+
+**EDA & Chip Design Tools:**
+- SNPS | Synopsys | $90B | EDA, chip design
+- CDNS | Cadence Design | $80B | EDA simulation
+- ANSYS | ANSYS | $50B | Simulation software
+- ASWP | AspenTech | $15B | Process simulation
+
+**DevOps & CI/CD:**
+- TEAM | Atlassian | $60B | Jira, Jenkins, DevOps
+- SPLK | Splunk | $40B | DevOps analytics
+- DDOG | Datadog | $50B | DevOps monitoring
+- SUMO | Sumo Logic | $18B | DevOps SIEM
+
+**Code Quality & Testing:**
+- TEAM | Atlassian | $60B | Code quality tools
+- SNPS | Synopsys | $90B | Code quality, testing
+- CDNS | Cadence | $80B | Testing tools
+- PERF | Perforce | $1B (private)
+
+**Version Control & Collaboration:**
+- MSFT | Microsoft | $3.5T | GitHub, Azure DevOps
+- GITLAB | GitLab | $5B (private equity)
+- PERFORCE | Perforce | N/A (private)
+
+**Container & Kubernetes:**
+- DDOG | Datadog | $50B | Container monitoring
+- MSFT | Microsoft | $3.5T | Azure Kubernetes
+- AMZN | Amazon | $2.0T | ECS, EKS
+- GOOG | Alphabet | $2.2T | Kubernetes, GKE
+- REDHAT | Red Hat (IBM subsidiary) | merged
+
+**APIs & Integration:**
+- TWLO | Twilio | $15B | Communications APIs
+- OKTA | Okta | $20B | Identity APIs
+- NET | Cloudflare | $35B | API management
+- MULESOFT | MuleSoft (Salesforce) | merged
+
+**Low-Code/No-Code:**
+- MNDY | Monday.com | $10B | Low-code platform
+- ASANA | Asana | $10B | No-code workflows
+- MSFT | Microsoft | $3.5T | Power Platform, low-code
+
+**Application Performance Management (APM):**
+- DYAX | Dynatrace | $10B | Application monitoring
+- NEW | New Relic | $5B | APM
+- DDOG | Datadog | $50B | APM capabilities
+- SPLK | Splunk | $40B | APM
+
+---
+
+### TELECOMMUNICATIONS (30+ companies)
+
+**Wireless Carriers:**
+- VZ | Verizon | $300B | Wireless, telecom
+- T | AT&T | $150B | Wireless, telecom
+- TMUS | T-Mobile | $180B | Wireless carrier
+- DISH | Dish Network | $15B | Wireless MVNO
+
+**International Telecom (ADR):**
+- VOD | Vodafone | $45B | UK telecom
+- DT | Deutsche Telekom | $65B | German telecom (ADR)
+- SWVDYY | SwissVoiceData | N/A (private)
+
+**Cable & Broadband:**
+- CMCSA | Comcast | $200B | Cable, broadband, media
+- CHTR | Charter Communications | $100B | Broadband, cable
+- LUMN | Lumen Technologies | $25B | Fiber, network
+- SHENQ | Shen Zhou Electric | N/A (not telecom)
+
+**Network Infrastructure & Towers:**
+- CCI | Crown Castle | $70B | Tower infrastructure
+- SWCH | Switch & Data | $15B | Data center, networks
+- LUMN | Lumen Technologies | $25B | Fiber backbone
+
+**Telecom Equipment:**
+- CSCO | Cisco | $300B | Routers, telecom equipment
+- JNPR | Juniper | $20B | Telecom networking
+- NOKIA | Nokia | $35B | Telecom equipment (Finland ADR)
+- ERICSSON | Ericsson | $30B | Telecom equipment (Sweden ADR)
+- COMTECH | Comtech | $1B (under threshold)
+
+**Satellite Communications:**
+- VSAT | Viasat | $5B | Satellite broadband
+- IRIDIUM | Iridium Communications | $3B (under threshold)
+- INMBX | Inmarsat | N/A (acquired)
+
+**Telecom Services & Platforms:**
+- VZ | Verizon | $300B | Business services
+- T | AT&T | $150B | Business services
+- TMUS | T-Mobile | $180B | Business services
+- OKTA | Okta | $20B | Identity for telecom
+
+---
+
+### MEDIA & ENTERTAINMENT (50+ companies)
+
+**Streaming Video:**
+- NFLX | Netflix | $300B | Streaming video
+- DIS | Disney | $200B | Disney+, Hulu, ESPN+
+- AMZN | Amazon | $2.0T | Prime Video
+- GOOG | Alphabet | $2.2T | YouTube
+- PARA | Paramount | $10B | Paramount+
+- WBD | Warner Bros Discovery | $50B | Max, Discovery+
+- ROKU | Roku | $15B | Streaming OS, The Roku Channel
+- FUBO | Fubo | $2B (under threshold)
+- IMAX | IMAX | $1B (under threshold)
+
+**Broadcast & Cable:**
+- FOX | Fox Corporation | $25B | Broadcasting
+- CMCSA | Comcast | $200B | Cable programming
+- CHTR | Charter Communications | $100B | Cable content
+- TVLA | Televisa | $5B | Latin American media
+
+**Movies & Production:**
+- DIS | Disney | $200B | Movie production
+- PARA | Paramount | $10B | Movie production
+- WBD | Warner Bros Discovery | $50B | Warner Bros films
+- LIONSGATE | Lions Gate Entertainment | $4B (under threshold)
+- SONY | Sony | $120B | Sony Pictures (ADR)
+
+**Music & Audio:**
+- SPOT | Spotify | $50B | Music streaming
+- SXM | SiriusXM | $35B | Satellite radio, podcasts
+- UMG | Universal Music Group | $60B | Music label (Amsterdam)
+- TENCENT | Tencent Music | $15B | Chinese music streaming
+
+**Digital Content & Publishing:**
+- TWTR | Twitter (X) | $15B (acquired - may be private)
+- SNAP | Snap Inc | $15B | Social content platform
+- PINS | Pinterest | $25B | Content discovery
+- MTCH | Match Group | $8B | Content platforms (dating)
+
+**Gaming & Entertainment:**
+- RBLX | Roblox | $15B | Metaverse gaming
+- ATVI | Activision Blizzard | $80B | Video games
+- TAKE | Take-Two Interactive | $25B | Gaming (GTA, 2K)
+- EA | Electronic Arts | $40B | Gaming
+- TTWO | Take-Two (duplicate)
+- CDPR | CD Projekt Red | $5B (private, Polish)
+- ZYNGA | Zynga (Take-Two) | merged
+
+**Sports & Events:**
+- DIS | Disney | $200B | ESPN sports
+- FOX | Fox | $25B | Fox Sports
+- CMCSA | Comcast | $200B | Sports networks
+- PENN | Penn Entertainment | $2B (under threshold)
+
+**Podcasts & Audio:**
+- SXM | SiriusXM | $35B | Podcasts, audio
+- SPOT | Spotify | $50B | Podcasts
+- AMZN | Amazon | $2.0T | Music, Audible
+
+**Advertising & Marketing Tech:**
+- GOOG | Alphabet | $2.2T | Google Ads
+- AMZN | Amazon | $2.0T | Amazon Ads
+- META | Meta Platforms | $1.5T | Facebook/Instagram Ads
+- TTD | The Trade Desk | $30B | Programmatic advertising
+- PINS | Pinterest | $25B | Pinterest Ads
+- OUTBRAIN | Outbrain (private) | $4B
+- TABOOLA | Taboola (private) | $2B
+
+**Content Distribution & Analytics:**
+- ROKU | Roku | $15B | Content distribution
+- AKAM | Akamai | $20B | CDN, content delivery
+- INAP | Inap (formerly Iomart) | $3B (under threshold)
+
+---
+
+### REAL ESTATE TECHNOLOGY (15 companies)
+
+**Real Estate Platforms:**
+- RDFN | Redfin | $12B | Real estate platform
+- Z | Zillow | $20B | Real estate, Zestimate
+- OPEN | OpenDoor | $3B (under threshold)
+- UPST | Upstart | $6B | Real estate lending AI
+- MSTR | MicroStrategy | $35B | Real estate data (geographic analysis)
+
+**Real Estate Investment Trusts (REITs) - Tech Focus:**
+- PLD | Prologis | $160B | Data center REIT, properties
+- EQIX | Equinix | $120B | Data center REIT
+- CCI | Crown Castle | $70B | Tower REIT
+- DLR | Digital Realty | $50B | Data center REIT
+- QTS | QTS Realty | $12B | Data center REIT
+- CONE | CyrusOne | $12B | Data center REIT
+- SWCH | Switch | $15B | Data center operations
+- WELL | Welltower | $40B | Healthcare real estate
+- O | Realty Income | $90B | Retail REIT
+- SPG | Simon Property | $50B | Mall REIT
+
+---
+
+### HARDWARE & CONSUMER ELECTRONICS (25 companies)
+
+**Computing Hardware:**
+- AAPL | Apple | $3.5T | iPhones, Macs, iPad
+- MSFT | Microsoft | $3.5T | Surface, Xbox
+- DELL | Dell Technologies | $50B | PCs, enterprise
+- HPE | Hewlett Packard Enterprise | $45B | Servers
+- HPQ | HP Inc | $25B | PCs, printers
+- SMCI | Super Micro | $60B | Servers, components
+- CRSR | Corsair | $15B | Gaming components
+
+**Peripherals & Accessories:**
+- LOGI | Logitech | $12B | Mice, keyboards, headsets
+- CRSR | Corsair | $15B | Gaming peripherals
+- GN | GN Store Nord | $8B | Headsets (Jabra)
+- SKUL | Skullcandy | $4B (under threshold)
+
+**Displays & Monitors:**
+- VIAVI | Viavi | $4B (under threshold)
+- GENM | Generac | $40B | Power generation hardware
+
+**GPS & Wearables:**
+- GRMN | Garmin | $35B | GPS, wearables
+- FITB | Fitbit (Google) | merged
+- GARMIN | Garmin (duplicate)
+
+**Consumer Electronics Manufacturing:**
+- AAPL | Apple | $3.5T | Device manufacturing
+- FOXC | Foxconn (Hon Hai) | $50B | Electronics manufacturing (Taiwan ADR)
+
+---
+
+### AI & MACHINE LEARNING SPECIALISTS (30+ companies)
+
+**AI Chip & Hardware:**
+- NVDA | NVIDIA | $3.2T | GPUs for AI, CUDA
+- ALAB | Astera Labs | $35B | AI connectivity
+- AMD | Advanced Micro Devices | $220B | AI GPUs, processors
+- INTC | Intel | $260B | AI processors, Gaudi
+- QCOM | Qualcomm | $210B | Mobile AI chips
+- GRMN | Garmin | $35B | Edge AI chips
+
+**AI Software & Platforms:**
+- PLTR | Palantir Technologies | $80B | AI data analytics
+- DDOG | Datadog | $50B | AI for monitoring
+- MSTR | MicroStrategy | $35B | AI business intelligence
+- SPLK | Splunk | $40B | AI for operations
+
+**AI Development Tools:**
+- SNPS | Synopsys | $90B | AI chip design
+- CDNS | Cadence | $80B | AI design tools
+- ANSYS | ANSYS | $50B | AI simulation
+
+**Generative AI & LLM Platforms:**
+- MSFT | Microsoft | $3.5T | Copilot, AI services
+- GOOG | Alphabet | $2.2T | Bard, Gemini
+- AMZN | Amazon | $2.0T | AWS AI services
+- ORCL | Oracle | $380B | Oracle AI
+- IBM | IBM | $230B | IBM Watson
+- CRM | Salesforce | $360B | Salesforce Einstein
+
+**AI Infrastructure & Hosting:**
+- LAMBDA | Lambda Labs | N/A (private)
+- CRUSOE | Crusoe Energy | N/A (private)
+
+---
+
+### INTERNET & DIGITAL PLATFORMS (20 companies)
+
+**Search & Information:**
+- GOOG | Alphabet/Google | $2.2T | Search, Gmail, Drive
+- AMZN | Amazon | $2.0T | A9 search (internal)
+- BAIDU | Baidu | $50B | Chinese search
+- BIDU | Baidu ADR | $50B | Chinese search
+
+**Social & Communications:**
+- META | Meta Platforms | $1.5T | Facebook, Instagram, WhatsApp
+- SNAP | Snap Inc | $15B | Snapchat
+- PINS | Pinterest | $25B | Pinterest
+- TCEHY | Tencent | $80B | WeChat (Hong Kong)
+- NAVER | Naver | $35B | Korean portal
+- SE | Sea Limited | $30B | Asian platforms
+
+**E-Commerce & Marketplaces:**
+- AMZN | Amazon | $2.0T | Amazon marketplace
+- EBAY | eBay | $50B | Online marketplace
+- ETSY | Etsy | $30B | Handmade marketplace
+- MELI | MercadoLibre | $40B | Latin American ecommerce
+- SE | Sea Limited | $30B | Shopee marketplace
+- CRWD | CrowdStrike | $50B | (not ecommerce - removed)
+
+**Rideshare & Gig Economy:**
+- UBER | Uber Technologies | $100B | Rideshare, delivery
+- LYFT | Lyft | $10B | Rideshare
+- DASH | DoorDash | $50B | Food delivery
+- GRUB | GrubHub | $10B | Food delivery
+
+**Travel & Booking:**
+- BOOKING | Booking Holdings | $120B | Hotel, travel booking
+- EXPE | Expedia | $25B | Travel, hotels
+- TRIP | TripAdvisor | $8B | Travel reviews
+- TRIVAGO | Trivago | $2B (under threshold)
+
+---
+
+### SOFTWARE & PRODUCTIVITY (30+ companies)
+
+**Office Productivity:**
+- MSFT | Microsoft | $3.5T | Office 365, Teams
+- GOOG | Alphabet | $2.2T | Google Workspace
+- ADBE | Adobe | $270B | Creative Suite, Acrobat
+- ZOOM | Zoom | $30B | Zoom Meetings
+- ASANA | Asana | $10B | Work management
+- MNDY | Monday.com | $10B | Work OS
+
+**Document & File Management:**
+- BOX | Box | $10B | Content management
+- DBX | Dropbox | $12B | Cloud storage
+- DOCU | DocuSign | $13B | E-signature
+- ADBE | Adobe | $270B | Document management
+
+**Video & Media Editing:**
+- ADBE | Adobe | $270B | Premiere, After Effects
+- AVID | Avid Technologies | $5B | Media production
+
+**Email & Messaging:**
+- MSFT | Microsoft | $3.5T | Outlook, Teams
+- GOOG | Alphabet | $2.2T | Gmail
+- SLACK | Slack (Salesforce) | merged
+
+**Note-taking & Organization:**
+- MSFT | Microsoft | $3.5T | OneNote
+- NOTION | Notion (private)
+- EVERNOTE | Evernote (private)
+
+---
+
+### SPECIALIZED/VERTICALS (30+ companies)
+
+**Life Sciences Software:**
+- VEEV | Veeva Systems | $30B | Biotech/pharma cloud
+- MDLY | Medley LLC | N/A (private)
+- EXAI | Exscientia | $5B | AI drug discovery
+
+**Legal Tech:**
+- DISCO | Disco | $15B | Legal discovery
+- CASETEXT | Casetext | $4B (private)
+- LEX | LexisNexis | $10B | Legal research
+
+**HR Tech & Payroll:**
+- WDAY | Workday | $70B | HCM cloud
+- ADP | ADP | $95B | Payroll services
+- PAYX | Paychex | $45B | Payroll services
+- SAP | SAP | $180B | HCM module
+
+**Accounting & Finance:**
+- INTU | Intuit | $200B | QuickBooks
+- BILL | Bill.com | $10B | Finance ops
+- RAMP | Ramp | $10B | Finance automation
+
+**Advertising & Analytics:**
+- TTD | The Trade Desk | $30B | Programmatic ads
+- GOOG | Alphabet | $2.2T | Ad tech
+- AMZN | Amazon | $2.0T | Ad platform
+- META | Meta | $1.5T | Ad platform
+
+**IoT & Smart Devices:**
+- GRMN | Garmin | $35B | GPS, IoT
+- AAPL | Apple | $3.5T | Apple Watch, smart home
+- MSFT | Microsoft | $3.5T | Azure IoT
+- AMZN | Amazon | $2.0T | Alexa IoT
+- GOOG | Alphabet | $2.2T | Google Home
+
+**Simulation & Modeling:**
+- ANSYS | ANSYS | $50B | Engineering simulation
+- ASWP | AspenTech | $15B | Process simulation
+- AUTODESK | Autodesk | $60B | 3D design software
+- DASSAULT | Dassault Systèmes | $45B | CAD software
+
+**Design & CAD:**
+- AUTODESK | Autodesk | $60B | AutoCAD, Revit
+- SNPS | Synopsys | $90B | Chip design
+- CDNS | Cadence | $80B | Design tools
+
+---
+
+## 3. COMPREHENSIVE NEWS AGGREGATOR (PRIMARY FOCUS)
+
+### Real-Time News Feed
+- **Source Integration:** NewsAPI, Finnhub, Bloomberg API, Reuters, TechCrunch, CNBC, WSJ, Financial Times
+- **Breaking News:** Auto-detect and highlight newest articles (updated minute-by-minute if possible)
+- **Each Article Shows:**
+  - Ticker badge with sector color
+  - Company name linked to company detail page
+  - Headline (bold, clickable to source)
+  - Source (Reuters, Bloomberg, TechCrunch, etc.)
+  - Time (relative: "14 minutes ago")
+  - Sentiment: 🟢 Positive | 🔴 Negative | ⚪ Neutral
+  - News Category: [Earnings] [Product] [AI] [M&A] [Supply Chain] [Regulation] [Competitive] [Executive]
+  - 2-3 sentence summary
+  - "Read Full Article" link
+  - Timestamp (absolute)
+
+### Advanced Filtering & Search
+- **Company Multi-Select:** Choose specific tickers
+- **Sector Filter:** All or select specific sectors
+- **Sentiment Filter:** Positive, Negative, Neutral, or All
+- **Date Range:** Last hour, Last 4 hours, Last 24 hours, Last 7 days, Last 30 days, Custom range
+- **News Category:** Earnings, Product Launch, AI/Generative AI, M&A, Partnerships, Supply Chain, Regulatory, Competitive, Executive Changes, Technical
+- **News Source:** Bloomberg, Reuters, TechCrunch, CNBC, WSJ, Yahoo Finance, Finnhub, etc.
+- **Search Terms:** Keyword search across headlines
+- **Sort Options:** Newest first, Oldest first, Most recent trending, Most sentiment positive, Most sentiment negative
+
+### News Feed Views
+- **Timeline View:** Chronological feed with infinite scroll
+- **Trending Now:** Top stories by engagement/recency
+- **By Sector:** News organized by sector tabs
+- **By Company:** News organized by company profile
+
+### Notifications & Alerts
+- **Breaking News Alert:** Highlight newest articles (< 5 minutes old)
+- **Important Tag:** Users can mark articles as important/flag
+- **Read/Unread Tracking:** Track which articles you've read
+- **Email Digest:** Daily/weekly summary email (future feature)
+
+---
+
+## 4. DASHBOARD TABS (5 PRIMARY TABS)
+
+### TAB 1: NEWS AGGREGATOR (PRIMARY - 50% of interface)
+- Full-screen news feed with advanced filtering
+- Real-time updates showing newest articles first
+- Sidebar filters (sector, sentiment, category, date range)
+- Search bar for keyword search
+- Social sharing (X, LinkedIn, email)
+- Save/bookmark articles
+- Read/unread tracking
+
+### TAB 2: EARNINGS CALENDAR
+- Calendar view with earnings dates
+- Table view: Ticker | Company | Sector | Date | Time | Est EPS | Actual EPS | Beat/Miss %
+- Filter by sector, date range
+- Upcoming (next 90 days), Past results, This week, This quarter
+- Color code: Green (beat), Red (miss), Gray (unreported)
+- Analyst consensus high/low
+- Historical surprise rate
+
+### TAB 3: COMPANY SCREENER
+- Sector dropdown selector
+- Sortable table:
+  - Ticker | Company | Sector | Market Cap | News (7-day) | News (24-hr) | Sentiment Ratio | Latest News Headline
+- Search by ticker/company name
+- Filter by market cap range
+- Multi-sort capability
+- Export to CSV
+
+### TAB 4: MARKET OVERVIEW
+- Metrics: Total companies, News (24hr), News (7-day), Sentiment ratio, Most active company/sector
+- Charts: News by sector, Sentiment distribution, News volume trend
+- Top 15 recent news (compact)
+- Latest earnings (7 days)
+- Upcoming earnings (7 days)
+- Trending companies/keywords
+
+### TAB 5: SECTOR DEEP DIVE
+- Sector selector dropdown
+- Companies in sector (table)
+- Recent sector news (7 days)
+- Competitive landscape
+- Sector health indicator (% positive sentiment)
+- Trending topics in sector
+
+---
+
+## 5. COLOR SCHEME - 13 SECTORS
+
+- **Semiconductors:** 🔵 #1f77b4
+- **Cloud & Infrastructure:** 🟢 #2ca02c
+- **Enterprise Software:** 🟣 #9467bd
+- **Telecommunications:** 🟠 #ff7f0e
+- **Media & Entertainment:** 🔴 #d62728
+- **Real Estate Tech:** 🟡 #bcbd22
+- **Hardware & Consumer:** 🔵 #17becf
+- **AI & Machine Learning:** ⚫ #7f7f7f
+- **Cybersecurity:** 🟥 #e377c2
+- **DevOps & Development:** 🟧 #ff9896
+- **Networking Equipment:** 🟩 #8c6d31
+- **Passive Components:** 🟪 #c5b0d5
+- **Internet & Digital:** 🔶 #f7b6d2
+
+---
+
+## 6. NEWS SOURCES TO INTEGRATE
+
+```python
+# TODO: Finnhub News API - Real-time stock news
+# TODO: NewsAPI - Broad financial news coverage
+# TODO: Twitter/X API - Real-time breaking news alerts
+# TODO: Reuters RSS - Direct news feed
+# TODO: Bloomberg API - Premium financial news
+# TODO: CNBC RSS - TV/web news
+# TODO: TechCrunch RSS - Tech news
+# TODO: WSJ API - Wall Street Journal
+# TODO: Financial Times - Premium tech news
+# TODO: SeekingAlpha - Stock analysis
+# TODO: MarketWatch - Financial news
+# TODO: Yahoo Finance - Stock news
+# TODO: Stocktwits - Social sentiment
+# TODO: Reddit threads - Community discussion
+# TODO: Web scraping - Direct from company websites (SEC filings, investor relations)
+```
+
+---
+
+## 7. DATABASE WILL INCLUDE
+
+- **250+ Companies:** All major US-listed TMT companies >$5B market cap
+- **13 Sectors:** Semiconductors, Cloud, Enterprise Software, Telecom, Media, Real Estate Tech, Hardware, AI/ML, Cybersecurity, DevOps, Networking, Passive Components, Internet/Digital
+- **50+ Sub-sectors:** Specialized vertical categories
+- **Earnings:** 500+ upcoming earnings dates
+- **News:** 50-100 sample articles daily (when APIs connected)
+- **Sentiments:** Positive, Negative, Neutral scoring
+
+---
+
+## 8. SAMPLE DATA
+
+Create 100+ sample news articles covering:
+- Earnings announcements (45%)
+- Product launches & AI breakthroughs (25%)
+- M&A & partnerships (15%)
+- Supply chain & regulatory (10%)
+- Competitive dynamics (5%)
+
+Realistic sources: Reuters, Bloomberg, TechCrunch, CNBC, WSJ, Seeking Alpha
+
+---
+
+## 9. REQUIREMENTS
+
+1. ✅ 250+ Company database - ALL major US-listed TMT
+2. ✅ News aggregator PRIMARY focus (50%+ of interface)
+3. ✅ Real-time news with advanced filtering
+4. ✅ 13 sector categories with consistent colors
+5. ✅ Professional, institutional quality
+6. ✅ iPad-optimized responsive design
+7. ✅ Clear API integration TODOs for real news sources
+8. ✅ Modular code for easy API swaps
+9. ✅ Ready for GLG client presentations
+10. ✅ Earnings calendar with accurate dates
+11. ✅ Company screener with market cap filtering
+12. ✅ Search, sort, filter across all data
+13. ✅ Export capability (CSV, reports)
+
+---
