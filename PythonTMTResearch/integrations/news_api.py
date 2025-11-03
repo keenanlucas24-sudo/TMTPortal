@@ -440,6 +440,8 @@ def fetch_multi_provider_news(tickers: Optional[List[str]] = None,
     articles_per_provider = limit // len(providers)
     
     # Fetch from each provider
+    from utils.secret_helper import get_secret
+
     for provider in providers:
         try:
             # Check if API key exists
@@ -448,10 +450,10 @@ def fetch_multi_provider_news(tickers: Optional[List[str]] = None,
                 'alpha_vantage': 'ALPHA_VANTAGE_KEY',
                 'marketaux': 'MARKETAUX_KEY'
             }
-            
-            api_key = os.getenv(key_map.get(provider, ''))
+            key_name = key_map.get(provider, '')
+            api_key = get_secret(key_name) if key_name else None
             if not api_key:
-                print(f"Warning: {key_map.get(provider)} not found, skipping {provider}")
+                print(f"Warning: {key_name} not found, skipping {provider}")
                 continue
             
             integration = NewsAPIIntegration(provider=provider)

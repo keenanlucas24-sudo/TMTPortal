@@ -4,6 +4,7 @@ Fetches real-time stock quotes and calculates percentage changes
 Uses Alpha Vantage and Finnhub APIs
 """
 import os
+from utils.secret_helper import get_secret
 import requests
 from typing import Dict, List, Optional
 from datetime import datetime, timedelta
@@ -20,12 +21,9 @@ def get_stock_quote_alphavantage(ticker: str) -> Optional[Dict]:
     Returns:
         Dict with price, change, change_percent, or None if error
     """
-    try:
-        # Prefer streamlit secrets when available
-        from utils.secret_helper import get_secret
-        api_key = get_secret("ALPHA_VANTAGE_KEY")
-    except Exception:
-        api_key = os.environ.get("ALPHA_VANTAGE_KEY")
+    # Prefer streamlit secrets when available (helper falls back to env vars)
+    from utils.secret_helper import get_secret
+    api_key = get_secret("ALPHA_VANTAGE_KEY")
     if not api_key:
         return None
     
@@ -66,7 +64,7 @@ def get_stock_quote_finnhub(ticker: str) -> Optional[Dict]:
     Returns:
         Dict with price, change, change_percent, or None if error
     """
-    api_key = os.environ.get("FINNHUB_API_KEY")
+    api_key = get_secret("FINNHUB_API_KEY")
     if not api_key:
         return None
     
